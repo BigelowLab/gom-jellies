@@ -8,4 +8,59 @@ format:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+coast = st_as_sf(read_coast())
+coast_bbox <- st_bbox(coast)
+obs = read_obs() %>% 
+  filter(type == "lionsmane", source == "record") %>% 
+  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
+  mutate(year = lubridate::year(date),
+         month = factor(lubridate::month(date, label = TRUE, abbr = TRUE), 
+                        levels = month.abb))
+```
+
+# All Lion's Mane Observations
+```{r}
+ggplot() +
+  geom_sf(data = coast, color = "black") +
+  geom_sf(data = obs, color = "red", size = 1.5) +
+  coord_sf(
+    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
+    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
+    expand = FALSE
+  ) +
+  theme_minimal() +
+  labs(title = "Lion's Mane Observations") +
+  theme(axis.title = element_blank())
+```
+
+# Lion's Mane Observations by Year
+```{r}
+ggplot() +
+  geom_sf(data = coast, color = "black") +
+  geom_sf(data = obs, color = "red", size = 1.5, alpha = 0.7) +
+  coord_sf(
+    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
+    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
+    expand = FALSE
+  ) +
+  facet_wrap(~ year) +
+  theme_minimal() +
+  labs(title = "Gulf of Maine Lion's Mane Observations by Year") +
+  theme(axis.title = element_blank())
+```
+
+# Lion's Mane Observations by Month
+```{r}
+ggplot() +
+  geom_sf(data = coast, color = "black") +
+  geom_sf(data = obs, color = "red", size = 1.5, alpha = 0.7) +
+  coord_sf(
+    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
+    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
+    expand = FALSE
+  ) +
+  facet_wrap(~ month) +
+  theme_minimal() +
+  labs(title = "Gulf of Maine Lion's Mane Observations by Month") +
+  theme(axis.title = element_blank())
 ```
