@@ -5,18 +5,114 @@ title: "Jellycast"
 ```{r setup, echo = FALSE}
 source("setup.R")
 coast = read_coast()
+coast_bbox = st_bbox(coast)
+obs = read_obs() %>% 
+  filter(source == "record", type %in% c("lionsmane", "moon", "whitecross", "comb")) %>% 
+  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
+  mutate(year = year(date),
+         month = factor(month(date, label = TRUE, abbr = TRUE), 
+                        levels = month.abb),
+         type = as.factor(type))
 ```
 
-For the [Jellyscape](https://github.com/BigelowLab/jellyscape) project observations are drawn from a recent release of unstaged [ECOMON](https://www.fisheries.noaa.gov/about/northeast-fisheries-science-centern) data. We choose the following groups to belong to the gelatinous "jellyscape" although the list is easily modified.
+For the [gom-jellies](https://github.com/BigelowLab/gom-jellies) project, observations come from community scientist reports. The following species have been selected for analysis:
 
-  + *Siphonophores* (siph)
-  + *Hydromedusea* (hydrom)
-  + *Coelenterates* (coel)
-  + *Ctenophores* (ctenop)
-  + *Salps* (salps)
+  + *Cyanea capillata* (Lion's Mane)
+  + *Aurelia aurita* (Moon)
+  + *Staurostoma mertensii* (White Cross)
+  + *Ctenophores* (Comb)
 
-These we can read from the [ecomon package](https://github.com/BigelowLab/ecomon) and aggregate these species into a count per unit area (10m^2) or count per unit volume (100m^3). Accepting the defaults for the `read_ecomon_spp()` function yields an aggregated (summed) table for areal abundance for the `r length(groups)` groups listed.
-
+# All Observations
 ```{r}
-plot(sf::st_geometry(coast), axes = TRUE, main = "Gulf of Maine")
+ggplot() +
+  geom_sf(data = coast, color = "black") +
+  geom_sf(data = obs, color = "red", size = 1.5) +
+  coord_sf(
+    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
+    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
+    expand = FALSE
+  ) +
+  theme_minimal() +
+  labs(title = "All Observations") +
+  theme(axis.title = element_blank())
+```
+
+# Observations by Year
+```{r}
+ggplot() +
+  geom_sf(data = coast, color = "black") +
+  geom_sf(data = obs, color = "red", size = 1.5, alpha = 0.7) +
+  coord_sf(
+    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
+    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
+    expand = FALSE
+  ) +
+  facet_wrap(~ year) +
+  theme_minimal() +
+  labs(title = "Observations by Year") +
+  theme(axis.title = element_blank())
+```
+
+# Observations by Month
+```{r}
+ggplot() +
+  geom_sf(data = coast, color = "black") +
+  geom_sf(data = obs, color = "red", size = 1.5, alpha = 0.7) +
+  coord_sf(
+    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
+    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
+    expand = FALSE
+  ) +
+  facet_wrap(~ month) +
+  theme_minimal() +
+  labs(title = "Observations by Month") +
+  theme(axis.title = element_blank())
+```
+
+# All Observations by Species
+```{r}
+ggplot() +
+  geom_sf(data = coast, color = "black") +
+  geom_sf(data = obs, aes(color = type), size = 1.5) +
+  coord_sf(
+    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
+    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
+    expand = FALSE
+  ) +
+  theme_minimal() +
+  labs(title = "All Observations") +
+  theme(axis.title = element_blank())
+
+```
+
+# Observations by Year
+```{r}
+ggplot() +
+  geom_sf(data = coast, color = "black") +
+  geom_sf(data = obs, aes(color = type), size = 1.5, alpha = 0.7) +
+  coord_sf(
+    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
+    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
+    expand = FALSE
+  ) +
+  facet_wrap(~ year) +
+  theme_minimal() +
+  labs(title = "Observations by Year") +
+  theme(axis.title = element_blank())
+```
+
+# Observations by Month
+```{r}
+ggplot() +
+  geom_sf(data = coast, color = "black") +
+  geom_sf(data = obs, aes(color = type), size = 1.5, alpha = 0.7) +
+  coord_sf(
+    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
+    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
+    expand = FALSE
+  ) +
+  facet_wrap(~ month) +
+  theme_minimal() +
+  labs(title = "Observations by Month") +
+  theme(axis.title = element_blank())
 ```

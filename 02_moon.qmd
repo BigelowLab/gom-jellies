@@ -10,7 +10,7 @@ format:
 source("setup.R")
 knitr::opts_chunk$set(echo = TRUE)
 coast = st_as_sf(read_coast())
-coast_bbox <- st_bbox(coast)
+coast_bbox = st_bbox(coast)
 obs = read_obs() %>% 
   filter(type == "moon", source == "record") %>% 
   st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
