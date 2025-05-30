@@ -21,6 +21,12 @@ website:
         text: Home
       - href: 01_lionsmane.qmd
         text: Lionsmane Jellyfish
+      - href: 02_mood.qmd
+        text: Moon Jellyfish
+      - href: 03_whitecross.qmd
+        text: White Cross Jellyfish
+      - href: 04_comb.qmd
+        text: Comb Jellyfish
       - href: about.qmd
         text: About
 tools:

@@ -1,5 +1,5 @@
 ---
-title: "Lionsmane Jellyfish"
+title: "Moon Jellyfish"
 format:
   html:
     code-fold: true
@@ -12,14 +12,14 @@ knitr::opts_chunk$set(echo = TRUE)
 coast = st_as_sf(read_coast())
 coast_bbox <- st_bbox(coast)
 obs = read_obs() %>% 
-  filter(type == "lionsmane", source == "record") %>% 
+  filter(type == "moon", source == "record") %>% 
   st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
   mutate(year = year(date),
          month = factor(month(date, label = TRUE, abbr = TRUE), 
                         levels = month.abb))
 ```
 
-# All Lion's Mane Observations
+# All Moon Jelly Observations
 ```{r}
 ggplot() +
   geom_sf(data = coast, color = "black") +
@@ -30,11 +30,11 @@ ggplot() +
     expand = FALSE
   ) +
   theme_minimal() +
-  labs(title = "Lion's Mane Observations") +
+  labs(title = "Moon Jelly Observations") +
   theme(axis.title = element_blank())
 ```
 
-# Lion's Mane Observations by Year
+# Moon Jelly Observations by Year
 ```{r}
 ggplot() +
   geom_sf(data = coast, color = "black") +
@@ -46,11 +46,11 @@ ggplot() +
   ) +
   facet_wrap(~ year) +
   theme_minimal() +
-  labs(title = "Lion's Mane Observations by Year") +
+  labs(title = "Moon Jelly Observations by Year") +
   theme(axis.title = element_blank())
 ```
 
-# Lion's Mane Observations by Month
+# Moon Jelly Observations by Month
 ```{r}
 ggplot() +
   geom_sf(data = coast, color = "black") +
@@ -62,6 +62,6 @@ ggplot() +
   ) +
   facet_wrap(~ month) +
   theme_minimal() +
-  labs(title = "Lion's Mane Observations by Month") +
+  labs(title = "Moon Jelly Observations by Month") +
   theme(axis.title = element_blank())
 ```
