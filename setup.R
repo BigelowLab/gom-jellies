@@ -11,7 +11,7 @@
 #' `cran` packages can be installed with `utils::install.packages()`
 #' `github` packages can be installed with `remotes::install_github()`
 packages = list(
-  cran = c("here", "tidyr", "readr", "sf", "rnaturalearth", "tidymodels", "dplyr"),
+  cran = c("here", "tidyr", "readr", "sf", "rnaturalearth", "tidymodels", "dplyr", "lubridate"),
   github = c(jellydata = "BigelowLab")
 )
 
