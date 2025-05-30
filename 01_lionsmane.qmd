@@ -19,7 +19,7 @@ obs = read_obs() %>%
                         levels = month.abb))
 ```
 
-# All Lion's Mane Observations
+# Observation Distributions
 ```{r}
 ggplot() +
   geom_sf(data = coast, color = "black") +
@@ -32,10 +32,7 @@ ggplot() +
   theme_minimal() +
   labs(title = "Lion's Mane Observations") +
   theme(axis.title = element_blank())
-```
 
-# Lion's Mane Observations by Year
-```{r}
 ggplot() +
   geom_sf(data = coast, color = "black") +
   geom_sf(data = obs, color = "red", size = 1.5, alpha = 0.7) +
@@ -48,10 +45,7 @@ ggplot() +
   theme_minimal() +
   labs(title = "Lion's Mane Observations by Year") +
   theme(axis.title = element_blank())
-```
 
-# Lion's Mane Observations by Month
-```{r}
 ggplot() +
   geom_sf(data = coast, color = "black") +
   geom_sf(data = obs, color = "red", size = 1.5, alpha = 0.7) +
@@ -64,4 +58,25 @@ ggplot() +
   theme_minimal() +
   labs(title = "Lion's Mane Observations by Month") +
   theme(axis.title = element_blank())
+```
+
+# Observation Count Histograms
+```{r}
+ggplot(obs, aes(x = factor(year))) +
+  geom_bar(fill = "steelblue") +
+  theme_minimal() +
+  labs(
+    title = "Lion's Mane Observations per Year",
+    x = "Year",
+    y = "Count"
+  )
+
+ggplot(obs, aes(x = factor(month))) +
+  geom_bar(fill = "steelblue") +
+  theme_minimal() +
+  labs(
+    title = "Lion's Mane Observations per Month",
+    x = "Month",
+    y = "Count"
+  )
 ```

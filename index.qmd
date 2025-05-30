@@ -6,6 +6,9 @@ title: "Jellycast"
 source("setup.R")
 coast = read_coast()
 coast_bbox = st_bbox(coast)
+all = read_obs() %>% 
+  filter(source == "record") %>% 
+  st_as_sf(coords = c("lon", "lat"), crs = 4326)
 obs = read_obs() %>% 
   filter(source == "record", type %in% c("lionsmane", "moon", "whitecross", "comb")) %>% 
   st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
@@ -23,10 +26,11 @@ For the [gom-jellies](https://github.com/BigelowLab/gom-jellies) project, observ
   + *Ctenophores* (Comb)
 
 # All Observations
+Here we show the general distribution of records for the all species reported
 ```{r}
 ggplot() +
   geom_sf(data = coast, color = "black") +
-  geom_sf(data = obs, color = "red", size = 1.5) +
+  geom_sf(data = all, color = "steelblue", size = 1.5) +
   coord_sf(
     xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
     ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
@@ -37,39 +41,41 @@ ggplot() +
   theme(axis.title = element_blank())
 ```
 
-# Observations by Year
+# Filtered Set 
+Here we show the general distribution of records for the `r length(type)` species listed.  Later we show more detailed per-group analyses.
 ```{r}
 ggplot() +
   geom_sf(data = coast, color = "black") +
-  geom_sf(data = obs, color = "red", size = 1.5, alpha = 0.7) +
+  geom_sf(data = obs, color = "steelblue", size = 1.5) +
   coord_sf(
     xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
     ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
     expand = FALSE
   ) +
-  facet_wrap(~ year) +
   theme_minimal() +
-  labs(title = "Observations by Year") +
+  labs(title = "All Observations") +
   theme(axis.title = element_blank())
+
+ggplot(obs, aes(x = factor(year))) +
+  geom_bar(fill = "steelblue") +
+  theme_minimal() +
+  labs(
+    title = "Number of Observations per Year",
+    x = "Year",
+    y = "Count"
+  )
+
+ggplot(obs, aes(x = factor(month))) +
+  geom_bar(fill = "steelblue") +
+  theme_minimal() +
+  labs(
+    title = "Number of Observations per Month",
+    x = "Month",
+    y = "Count"
+  )
 ```
 
-# Observations by Month
-```{r}
-ggplot() +
-  geom_sf(data = coast, color = "black") +
-  geom_sf(data = obs, color = "red", size = 1.5, alpha = 0.7) +
-  coord_sf(
-    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
-    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
-    expand = FALSE
-  ) +
-  facet_wrap(~ month) +
-  theme_minimal() +
-  labs(title = "Observations by Month") +
-  theme(axis.title = element_blank())
-```
-
-# All Observations by Species
+# By Species
 ```{r}
 ggplot() +
   geom_sf(data = coast, color = "black") +
@@ -83,36 +89,22 @@ ggplot() +
   labs(title = "All Observations") +
   theme(axis.title = element_blank())
 
-```
-
-# Observations by Year
-```{r}
-ggplot() +
-  geom_sf(data = coast, color = "black") +
-  geom_sf(data = obs, aes(color = type), size = 1.5, alpha = 0.7) +
-  coord_sf(
-    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
-    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
-    expand = FALSE
-  ) +
-  facet_wrap(~ year) +
+ggplot(obs, aes(x = factor(year), fill = type)) +
+  geom_bar() +
   theme_minimal() +
-  labs(title = "Observations by Year") +
-  theme(axis.title = element_blank())
-```
+  labs(
+    title = "Number of Observations per Year",
+    x = "Year",
+    y = "Count"
+  )
 
-# Observations by Month
-```{r}
-ggplot() +
-  geom_sf(data = coast, color = "black") +
-  geom_sf(data = obs, aes(color = type), size = 1.5, alpha = 0.7) +
-  coord_sf(
-    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
-    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
-    expand = FALSE
-  ) +
-  facet_wrap(~ month) +
+ggplot(obs, aes(x = factor(month), fill = type)) +
+  geom_bar() +
   theme_minimal() +
-  labs(title = "Observations by Month") +
-  theme(axis.title = element_blank())
+  labs(
+    title = "Number of Observations per Month",
+    x = "Month",
+    y = "Count"
+  )
+
 ```
