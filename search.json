@@ -1,12 +1,12 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Jellycast",
+    "objectID": "01_lionsmane.html",
+    "href": "01_lionsmane.html",
+    "title": "Lionsmane Jellyfish",
     "section": "",
-    "text": "here() starts at /mnt/ecocast/projects/gom-jellies\n\n\nFor the Jellyscape project observations are drawn from a recent release of unstaged ECOMON data. We choose the following groups to belong to the gelatinous “jellyscape” although the list is easily modified.\n\nSiphonophores (siph)\nHydromedusea (hydrom)\nCoelenterates (coel)\nCtenophores (ctenop)\nSalps (salps)\n\nThese we can read from the ecomon package and aggregate these species into a count per unit area (10m^2) or count per unit volume (100m^3). Accepting the defaults for the read_ecomon_spp() function yields an aggregated (summed) table for areal abundance for the 1 groups listed.\n\nplot(sf::st_geometry(coast), axes = TRUE, main = \"Gulf of Maine\")\n\n\n\n\n\n\n\n\n\n\n\n Back to top",
+    "text": "1 All Lion’s Mane Observations\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  theme_minimal() +\n  labs(title = \"Lion's Mane Observations\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\n\n\n2 Lion’s Mane Observations by Year\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5, alpha = 0.7) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  facet_wrap(~ year) +\n  theme_minimal() +\n  labs(title = \"Gulf of Maine Lion's Mane Observations by Year\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\n\n\n3 Lion’s Mane Observations by Month\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5, alpha = 0.7) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  facet_wrap(~ month) +\n  theme_minimal() +\n  labs(title = \"Gulf of Maine Lion's Mane Observations by Month\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\n\n\n\n\n Back to top",
     "crumbs": [
-      "Home"
+      "Lionsmane Jellyfish"
     ]
   },
   {
@@ -20,10 +20,13 @@
     ]
   },
   {
-    "objectID": "01_lionsmane.html",
-    "href": "01_lionsmane.html",
-    "title": "Lionsmane Jellyfish",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Jellycast",
     "section": "",
-    "text": "Back to top"
+    "text": "here() starts at /mnt/ecocast/projects/gom-jellies\n\n\nFor the Jellyscape project observations are drawn from a recent release of unstaged ECOMON data. We choose the following groups to belong to the gelatinous “jellyscape” although the list is easily modified.\n\nSiphonophores (siph)\nHydromedusea (hydrom)\nCoelenterates (coel)\nCtenophores (ctenop)\nSalps (salps)\n\nThese we can read from the ecomon package and aggregate these species into a count per unit area (10m^2) or count per unit volume (100m^3). Accepting the defaults for the read_ecomon_spp() function yields an aggregated (summed) table for areal abundance for the 1 groups listed.\n\nplot(sf::st_geometry(coast), axes = TRUE, main = \"Gulf of Maine\")\n\n\n\n\n\n\n\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Home"
+    ]
   }
 ]
