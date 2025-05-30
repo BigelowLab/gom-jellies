@@ -4,7 +4,12 @@ format:
   html:
     code-fold: true
 ---
-
+<a title="Lion's Mane in Gullmarn fjord at Sämstad, Lysekil Municipality, Sweden, photo by Thomas Lipke, CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons" 
+   href="https://commons.wikimedia.org/wiki/File:Lions_mane_jellyfish_in_Gullmarn_fjord_at_S%C3%A4mstad.jpg">
+  <img width="200" 
+       alt="Lion's Mane Jellyfish in Gullmarn fjord, Sweden" 
+       src="https://en.wikipedia.org/wiki/Lion%27s_mane_jellyfish#/media/File:Lion's_mane_jellyfish_in_Gullmarn_fjord_at_S%C3%A4mstad_7.jpg">
+</a>
 
 ```{r setup, include=FALSE}
 source("setup.R")

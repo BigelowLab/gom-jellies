@@ -1,5 +1,5 @@
 ---
-title: "Jellycast"
+title: "gom-jellies"
 ---
 
 ```{r setup, echo = FALSE}
