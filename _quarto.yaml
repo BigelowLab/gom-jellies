@@ -5,6 +5,9 @@ project:
   render:
     - index.qmd
     - 01_lionsmane.qmd
+    - 02_moon.qmd
+    - 03_whitecross.qmd
+    - 04_comb.qmd
     - about.qmd
 execute: 
   cache: false

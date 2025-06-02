@@ -10,13 +10,13 @@
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "03_whitecross.html",
+    "href": "03_whitecross.html",
+    "title": "White Cross Jellyfish",
     "section": "",
-    "text": "The jellydata project was developed at Bigelow Laboratory’s Tandy Center for Ocean Forecasting to aid in the development of modeling studies requiring either observation/abundance point data or to modeled rasterized layers for subsequent use in modeling studies. Use the github issues tracker to post questions or report issues.\n\ncredit Colby, Bigelow\nblurb about Nick, Ben, Logan\n\n\n\n\n Back to top",
+    "text": "1 Observation Distributions\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  theme_minimal() +\n  labs(title = \"White Cross Jelly Observations\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5, alpha = 0.7) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  facet_wrap(~ year) +\n  theme_minimal() +\n  labs(title = \"White Cross Jelly Observations by Year\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5, alpha = 0.7) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  facet_wrap(~ month) +\n  theme_minimal() +\n  labs(title = \"White Cross Jelly Observations by Month\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\n\n\n2 Observation Count Histograms\n\n\nCode\nggplot(obs, aes(x = factor(year))) +\n  geom_bar(fill = \"steelblue\") +\n  theme_minimal() +\n  labs(\n    title = \"White Cross Jelly Observations per Year\",\n    x = \"Year\",\n    y = \"Count\"\n  )\n\n\n\n\n\n\n\n\n\nCode\nggplot(obs, aes(x = factor(month))) +\n  geom_bar(fill = \"steelblue\") +\n  theme_minimal() +\n  labs(\n    title = \"White Cross Jelly Observations per Month\",\n    x = \"Month\",\n    y = \"Count\"\n  )\n\n\n\n\n\n\n\n\n\n\n\n\n\n Back to top",
     "crumbs": [
-      "About"
+      "White Cross Jellyfish"
     ]
   },
   {
@@ -27,6 +27,36 @@
     "text": "1 Observation Distributions\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  theme_minimal() +\n  labs(title = \"Lion's Mane Observations\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5, alpha = 0.7) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  facet_wrap(~ year) +\n  theme_minimal() +\n  labs(title = \"Lion's Mane Observations by Year\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5, alpha = 0.7) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  facet_wrap(~ month) +\n  theme_minimal() +\n  labs(title = \"Lion's Mane Observations by Month\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\n\n\n2 Observation Count Histograms\n\n\nCode\nggplot(obs, aes(x = factor(year))) +\n  geom_bar(fill = \"steelblue\") +\n  theme_minimal() +\n  labs(\n    title = \"Lion's Mane Observations per Year\",\n    x = \"Year\",\n    y = \"Count\"\n  )\n\n\n\n\n\n\n\n\n\nCode\nggplot(obs, aes(x = factor(month))) +\n  geom_bar(fill = \"steelblue\") +\n  theme_minimal() +\n  labs(\n    title = \"Lion's Mane Observations per Month\",\n    x = \"Month\",\n    y = \"Count\"\n  )\n\n\n\n\n\n\n\n\n\n\n\n\n\n Back to top",
     "crumbs": [
       "Lionsmane Jellyfish"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "The jellydata project was developed at Bigelow Laboratory’s Tandy Center for Ocean Forecasting to aid in the development of modeling studies requiring either observation/abundance point data or to modeled rasterized layers for subsequent use in modeling studies. Use the github issues tracker to post questions or report issues.\n\ncredit Colby, Bigelow\nblurb about Nick, Ben, Logan\n\n\n\n\n Back to top",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "02_moon.html",
+    "href": "02_moon.html",
+    "title": "Moon Jellyfish",
+    "section": "",
+    "text": "1 Observation Distributions\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  theme_minimal() +\n  labs(title = \"Moon Jelly Observations\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5, alpha = 0.7) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  facet_wrap(~ year) +\n  theme_minimal() +\n  labs(title = \"Moon Jelly Observations by Year\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5, alpha = 0.7) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  facet_wrap(~ month) +\n  theme_minimal() +\n  labs(title = \"Moon Jelly Observations by Month\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\n\n\n2 Observation Count Histograms\n\n\nCode\nggplot(obs, aes(x = factor(year))) +\n  geom_bar(fill = \"steelblue\") +\n  theme_minimal() +\n  labs(\n    title = \"Moon Jelly Observations per Year\",\n    x = \"Year\",\n    y = \"Count\"\n  )\n\n\n\n\n\n\n\n\n\nCode\nggplot(obs, aes(x = factor(month))) +\n  geom_bar(fill = \"steelblue\") +\n  theme_minimal() +\n  labs(\n    title = \"Moon Jelly Observations per Month\",\n    x = \"Month\",\n    y = \"Count\"\n  )\n\n\n\n\n\n\n\n\n\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Moon Jellyfish"
+    ]
+  },
+  {
+    "objectID": "04_comb.html",
+    "href": "04_comb.html",
+    "title": "Comb Jellyfish",
+    "section": "",
+    "text": "1 Observation Distributions\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  theme_minimal() +\n  labs(title = \"Comb Jelly Observations\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5, alpha = 0.7) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  facet_wrap(~ year) +\n  theme_minimal() +\n  labs(title = \"Comb Jelly Observations by Year\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\nCode\nggplot() +\n  geom_sf(data = coast, color = \"black\") +\n  geom_sf(data = obs, color = \"red\", size = 1.5, alpha = 0.7) +\n  coord_sf(\n    xlim = c(coast_bbox[\"xmin\"], coast_bbox[\"xmax\"]),\n    ylim = c(coast_bbox[\"ymin\"], coast_bbox[\"ymax\"]),\n    expand = FALSE\n  ) +\n  facet_wrap(~ month) +\n  theme_minimal() +\n  labs(title = \"Comb Jelly Observations by Month\") +\n  theme(axis.title = element_blank())\n\n\n\n\n\n\n\n\n\n\n\n2 Observation Count Histograms\n\n\nCode\nggplot(obs, aes(x = factor(year))) +\n  geom_bar(fill = \"steelblue\") +\n  theme_minimal() +\n  labs(\n    title = \"Comb Jelly Observations per Year\",\n    x = \"Year\",\n    y = \"Count\"\n  )\n\n\n\n\n\n\n\n\n\nCode\nggplot(obs, aes(x = factor(month))) +\n  geom_bar(fill = \"steelblue\") +\n  theme_minimal() +\n  labs(\n    title = \"Comb Jelly Observations per Month\",\n    x = \"Month\",\n    y = \"Count\"\n  )\n\n\n\n\n\n\n\n\n\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Comb Jellyfish"
     ]
   }
 ]
