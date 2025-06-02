@@ -10,12 +10,12 @@ all = read_obs() %>%
   filter(source == "record") %>% 
   st_as_sf(coords = c("lon", "lat"), crs = 4326)
 obs = read_obs() %>% 
-  filter(source == "record", type %in% c("lionsmane", "moon", "whitecross", "comb")) %>% 
+  filter(source == "record", .data$type %in% c("lionsmane", "moon", "whitecross", "comb")) %>% 
   st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
   mutate(year = year(date),
          month = factor(month(date, label = TRUE, abbr = TRUE), 
                         levels = month.abb),
-         type = as.factor(type))
+         type = as.factor(.data$type))
 ```
 
 For the [gom-jellies](https://github.com/BigelowLab/gom-jellies) project, observations come from community scientist reports. The following species have been selected for analysis:
@@ -42,7 +42,7 @@ ggplot() +
 ```
 
 # Filtered Set 
-Here we show the general distribution of records for the `r length(type)` species listed.  Later we show more detailed per-group analyses.
+Here we show the general distribution of records for the `r length(obs$type)` species listed.  Later we show more detailed per-group analyses.
 ```{r}
 ggplot() +
   geom_sf(data = coast, color = "black") +

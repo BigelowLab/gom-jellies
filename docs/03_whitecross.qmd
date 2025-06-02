@@ -1,0 +1,82 @@
+---
+title: "White Cross Jellyfish"
+format:
+  html:
+    code-fold: true
+---
+
+
+```{r setup, include=FALSE}
+source("setup.R")
+knitr::opts_chunk$set(echo = TRUE)
+coast = st_as_sf(read_coast())
+coast_bbox = st_bbox(coast)
+obs = read_obs() %>% 
+  filter(type == "whitecross", source == "record") %>% 
+  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
+  mutate(year = year(date),
+         month = factor(month(date, label = TRUE, abbr = TRUE), 
+                        levels = month.abb))
+```
+
+# Observation Distributions
+```{r}
+ggplot() +
+  geom_sf(data = coast, color = "black") +
+  geom_sf(data = obs, color = "red", size = 1.5) +
+  coord_sf(
+    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
+    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
+    expand = FALSE
+  ) +
+  theme_minimal() +
+  labs(title = "White Cross Jelly Observations") +
+  theme(axis.title = element_blank())
+
+ggplot() +
+  geom_sf(data = coast, color = "black") +
+  geom_sf(data = obs, color = "red", size = 1.5, alpha = 0.7) +
+  coord_sf(
+    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
+    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
+    expand = FALSE
+  ) +
+  facet_wrap(~ year) +
+  theme_minimal() +
+  labs(title = "White Cross Jelly Observations by Year") +
+  theme(axis.title = element_blank())
+
+ggplot() +
+  geom_sf(data = coast, color = "black") +
+  geom_sf(data = obs, color = "red", size = 1.5, alpha = 0.7) +
+  coord_sf(
+    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
+    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
+    expand = FALSE
+  ) +
+  facet_wrap(~ month) +
+  theme_minimal() +
+  labs(title = "White Cross Jelly Observations by Month") +
+  theme(axis.title = element_blank())
+```
+
+# Observation Count Histograms
+```{r}
+ggplot(obs, aes(x = factor(year))) +
+  geom_bar(fill = "steelblue") +
+  theme_minimal() +
+  labs(
+    title = "White Cross Jelly Observations per Year",
+    x = "Year",
+    y = "Count"
+  )
+
+ggplot(obs, aes(x = factor(month))) +
+  geom_bar(fill = "steelblue") +
+  theme_minimal() +
+  labs(
+    title = "White Cross Jelly Observations per Month",
+    x = "Month",
+    y = "Count"
+  )
+```
