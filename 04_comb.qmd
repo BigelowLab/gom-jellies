@@ -5,6 +5,18 @@ format:
     code-fold: true
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Comb_jelly.tif/lossy-page1-640px-Comb_jelly.tif.jpg" 
+     alt="Comb jelly" 
+     width="500">
+
+<p style="font-size: 0.9em;">
+  <em>Comb jelly.</em> Photo by 
+  <a href="https://commons.wikimedia.org/wiki/User:Chris_huh">Chris huh</a>, 
+  licensed under 
+  <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a> 
+  via <a href="https://commons.wikimedia.org/wiki/File:Comb_jelly.tif">Wikimedia Commons</a>.
+</p>
+
 
 ```{r setup, include=FALSE}
 source("setup.R")

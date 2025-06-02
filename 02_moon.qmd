@@ -5,6 +5,18 @@ format:
     code-fold: true
 ---
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Moon_jelly.1.jpg" 
+     alt="Moon jellyfish" 
+     width="500">
+
+<p style="font-size: 0.9em;">
+  <em>Moon jellyfish.</em> Photo by 
+  <a href="https://commons.wikimedia.org/wiki/User:Zyance">Zyance</a>, 
+  licensed under 
+  <a href="https://creativecommons.org/licenses/by-sa/2.5">CC BY-SA 2.5</a> 
+  via <a href="https://commons.wikimedia.org/wiki/File:Moon_jelly.1.jpg">Wikimedia Commons</a>.
+</p>
+
 
 ```{r setup, include=FALSE}
 source("setup.R")

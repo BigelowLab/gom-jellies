@@ -4,6 +4,17 @@ format:
   html:
     code-fold: true
 ---
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Whitecross_Jelly_%28Staurostoma_mertensii%29_-_Sortland%2C_Norway_2023-07-15.jpg/640px-Whitecross_Jelly_%28Staurostoma_mertensii%29_-_Sortland%2C_Norway_2023-07-15.jpg" 
+     alt="Whitecross Jelly (Staurostoma mertensii) – Sortland, Norway" 
+     width="500">
+
+<p style="font-size: 0.9em;">
+  <em>Whitecross Jelly (<i>Staurostoma mertensii</i>) – Sortland, Norway.</em> Photo by 
+  <a href="https://commons.wikimedia.org/wiki/User:Øystein_Paulsen">Øystein Paulsen</a>, 
+  licensed under 
+  <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a> 
+  via <a href="https://commons.wikimedia.org/wiki/File:Whitecross_Jelly_(Staurostoma_mertensii)_-_Sortland,_Norway_2023-07-15.jpg">Wikimedia Commons</a>.
+</p>
 
 
 ```{r setup, include=FALSE}
