@@ -5,7 +5,9 @@ format:
     code-fold: true
 ---
 
-(~/images/moon.JPG)
+<p align="center">
+  <img src="images/moon.JPG" width="400">
+</p>
 
 <section>
   <p>

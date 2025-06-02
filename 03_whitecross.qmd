@@ -4,7 +4,10 @@ format:
   html:
     code-fold: true
 ---
-(~/images/whitecross.jpg)
+
+<p align="center">
+  <img src="images/whitecross.jpg" width="400">
+</p>
 
 <section>
   <p>
