@@ -18,7 +18,6 @@ format:
 </p>
 
 <section>
-  <h2>Comb Jelly</h2>
   <p>
     Comb jellies, or *ctenophores*, are gelatinous marine animals known for their shimmering rows of cilia—called "combs"—that they use for swimming. Although similar in appearance to jellyfish, comb jellies belong to a separate phylum and lack stinging cells.
   </p>

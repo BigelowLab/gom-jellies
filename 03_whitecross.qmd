@@ -17,7 +17,6 @@ format:
 </p>
 
 <section>
-  <h2>Whitecross Jelly</h2>
   <p>
     The Whitecross jelly (*Staurostoma mertensii*) is a less commonly observed species, named for the distinct white cross-shaped markings on its bell. It inhabits cold, northern waters and has been documented in regions such as coastal Norway.
   </p>

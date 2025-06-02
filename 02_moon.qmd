@@ -18,7 +18,6 @@ format:
 </p>
 
 <section>
-  <h2>Moon Jelly</h2>
   <p>
     The moon jelly (*Aurelia aurita*) is a widely distributed and easily recognizable jellyfish, known for its translucent, saucer-shaped bell and four horseshoe-shaped gonads visible through the top. It typically grows to about 25–40 cm (10–16 inches) in diameter.
   </p>
