@@ -23,7 +23,7 @@ website:
       - href: index.qmd
         text: Home
       - href: 01_lionsmane.qmd
-        text: Lionsmane Jellyfish
+        text: Lion's Mane Jellyfish
       - href: 02_moon.qmd
         text: Moon Jellyfish
       - href: 03_whitecross.qmd

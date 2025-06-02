@@ -5,15 +5,7 @@ format:
     code-fold: true
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Lion%27s_mane_jellyfish_in_Gullmarn_fjord_at_S%C3%A4mstad_2.jpg" 
-     alt="Lion's mane jellyfish in Gullmarn fjord at Sämstad" 
-     width="500">
-
-<p style="font-size: 0.9em;">
-  Photo by <a href="https://commons.wikimedia.org/wiki/User:Lycaon">Hans Hillewaert</a>, 
-  licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> 
-  via <a href="https://commons.wikimedia.org/wiki/File:Lion%27s_mane_jellyfish_in_Gullmarn_fjord_at_S%C3%A4mstad_2.jpg">Wikimedia Commons</a>.
-</p>
+(~/images/lionsmane.JPG)
 
 <section>
   <p>
@@ -43,13 +35,13 @@ coast_bbox = st_bbox(coast)
 obs = read_obs() %>% 
   filter(type == "lionsmane", source == "record") %>% 
   st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
-  mutate(year = year(date),
+  mutate(year = factor(year(date)),
          month = factor(month(date, label = TRUE, abbr = TRUE), 
                         levels = month.abb))
 ```
 
 # Observation Distributions
-```{r}
+```{r dist}
 ggplot() +
   geom_sf(data = coast, color = "black") +
   geom_sf(data = obs, color = "red", size = 1.5) +
@@ -89,23 +81,24 @@ ggplot() +
   theme(axis.title = element_blank())
 ```
 
-# Observation Count Histograms
-```{r}
-ggplot(obs, aes(x = factor(year))) +
-  geom_bar(fill = "steelblue") +
+# Proportion of Observations Histograms
+```{r hist}
+ggplot(obs, aes(x = year)) +
+  geom_bar(aes(y = after_stat(prop), group = 1), fill = "steelblue") +
   theme_minimal() +
   labs(
-    title = "Lion's Mane Observations per Year",
+    title = "Proportion of Lion's Mane Observations per Year",
     x = "Year",
-    y = "Count"
+    y = "Proportion"
   )
 
-ggplot(obs, aes(x = factor(month))) +
-  geom_bar(fill = "steelblue") +
+ggplot(obs, aes(x = month)) +
+  geom_bar(aes(y = after_stat(prop), group = 1), fill = "steelblue") +
+  scale_x_discrete(drop = FALSE) +
   theme_minimal() +
   labs(
-    title = "Lion's Mane Observations per Month",
+    title = "Proportion of Lion's Mane Observations per Month",
     x = "Month",
-    y = "Count"
+    y = "Proportion"
   )
 ```

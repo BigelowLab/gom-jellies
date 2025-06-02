@@ -5,17 +5,7 @@ format:
     code-fold: true
 ---
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Comb_jelly.tif/lossy-page1-640px-Comb_jelly.tif.jpg" 
-     alt="Comb jelly" 
-     width="500">
-
-<p style="font-size: 0.9em;">
-  <em>Comb jelly.</em> Photo by 
-  <a href="https://commons.wikimedia.org/wiki/User:Chris_huh">Chris huh</a>, 
-  licensed under 
-  <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a> 
-  via <a href="https://commons.wikimedia.org/wiki/File:Comb_jelly.tif">Wikimedia Commons</a>.
-</p>
+(~/images/comb.png)
 
 <section>
   <p>
@@ -34,8 +24,6 @@ format:
   </p>
 </section>
 
-
-
 ```{r setup, include=FALSE}
 source("setup.R")
 knitr::opts_chunk$set(echo = TRUE)
@@ -44,13 +32,13 @@ coast_bbox = st_bbox(coast)
 obs = read_obs() %>% 
   filter(type == "comb", source == "record") %>% 
   st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
-  mutate(year = year(date),
+  mutate(year = factor(year(date)),
          month = factor(month(date, label = TRUE, abbr = TRUE), 
                         levels = month.abb))
 ```
 
 # Observation Distributions
-```{r}
+```{r dist}
 ggplot() +
   geom_sf(data = coast, color = "black") +
   geom_sf(data = obs, color = "red", size = 1.5) +
@@ -90,23 +78,24 @@ ggplot() +
   theme(axis.title = element_blank())
 ```
 
-# Observation Count Histograms
-```{r}
-ggplot(obs, aes(x = factor(year))) +
-  geom_bar(fill = "steelblue") +
+# Proportion of Observations Histograms
+```{r hist}
+ggplot(obs, aes(x = year)) +
+  geom_bar(aes(y = after_stat(prop), group = 1), fill = "steelblue") +
   theme_minimal() +
   labs(
-    title = "Comb Jelly Observations per Year",
+    title = "Proportion of Comb Jelly Observations per Year",
     x = "Year",
-    y = "Count"
+    y = "Proportion"
   )
 
-ggplot(obs, aes(x = factor(month))) +
-  geom_bar(fill = "steelblue") +
+ggplot(obs, aes(x = month)) +
+  geom_bar(aes(y = after_stat(prop), group = 1), fill = "steelblue") +
+  scale_x_discrete(drop = FALSE) +
   theme_minimal() +
   labs(
-    title = "Comb Jelly Observations per Month",
+    title = "Proportion of Comb Jelly Observations per Month",
     x = "Month",
-    y = "Count"
+    y = "Proportion"
   )
 ```
