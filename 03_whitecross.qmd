@@ -16,6 +16,20 @@ format:
   via <a href="https://commons.wikimedia.org/wiki/File:Whitecross_Jelly_(Staurostoma_mertensii)_-_Sortland,_Norway_2023-07-15.jpg">Wikimedia Commons</a>.
 </p>
 
+<section>
+  <h2>Whitecross Jelly</h2>
+  <p>
+    The Whitecross jelly (*Staurostoma mertensii*) is a less commonly observed species, named for the distinct white cross-shaped markings on its bell. It inhabits cold, northern waters and has been documented in regions such as coastal Norway.
+  </p>
+  <p>
+    This species remains relatively mysterious compared to other jellyfish, and sightings are often of scientific interest. Its delicate body and unique markings make it visually striking when encountered by divers or captured in photographs.
+  </p>
+  <p>
+    <strong>Learn more:</strong><br>
+    <a href="https://commons.wikimedia.org/wiki/File:Whitecross_Jelly_(Staurostoma_mertensii)_-_Sortland,_Norway_2023-07-15.jpg" target="_blank">Wikimedia Commons Photo</a>
+  </p>
+</section>
+
 
 ```{r setup, include=FALSE}
 source("setup.R")
