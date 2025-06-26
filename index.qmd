@@ -49,6 +49,10 @@ For the [gom-jellies](https://github.com/BigelowLab/gom-jellies) project, observ
   + *Ctenophores* (Comb)
 
 # All Observations
+<<<<<<< HEAD
+=======
+Distribution of the `r length(all$type)` reports for all species.
+>>>>>>> 6d61a7a1680c9f53df050073fa95d0174798852f
 ```{r, echo = FALSE}
 # Distribution of the `r length(all$type)` reports for all species.
 ggplot() +
