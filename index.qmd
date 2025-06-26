@@ -6,16 +6,39 @@ title: "gom-jellies"
 source("setup.R")
 coast = read_coast()
 coast_bbox = st_bbox(coast)
-all = read_obs() %>% 
-  filter(source == "record") %>% 
+
+all = read_obs() %>%
+  filter(source == "record") %>%
   st_as_sf(coords = c("lon", "lat"), crs = 4326)
-obs = read_obs() %>% 
-  filter(source == "record", type %in% c("lionsmane", "moon", "whitecross", "comb")) %>% 
-  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
+obs = read_obs() %>%
+  filter(source == "record", type %in% c("lionsmane", "moon", "whitecross", "comb")) %>%
+  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>%
   mutate(year = year(date),
-         month = factor(month(date, label = TRUE, abbr = TRUE), 
+         month = factor(month(date, label = TRUE, abbr = TRUE),
                         levels = month.abb),
          type = as.factor(type))
+
+# df = read.csv("jellyfish-prod - prod.csv") %>% 
+#   select(Source, Year, Month, Day, Time, Type, Lat, Lon, Count, Size) %>% 
+#   drop_na() %>%
+#   mutate(Date = as.Date(sprintf("%04d-%02d-%02d", Year, Month, Day))) %>% 
+#   st_as_sf(coords = c("Lon", "Lat"), crs = 4326) %>%
+#   select(-Year, -Month, -Day) %>%
+#   rename(
+#     date = Date,
+#     source = Source,
+#     type = Type
+#   )
+# 
+# all = df %>% 
+#   filter(source == "record")
+# 
+# obs = df %>% 
+#   filter(source == "record", type %in% c("lionsmane", "moon", "whitecross", "comb")) %>% 
+#     mutate(year = year(date),
+#          month = factor(month(date, label = TRUE, abbr = TRUE), 
+#                         levels = month.abb),
+#          type = as.factor(type))
 ```
 
 For the [gom-jellies](https://github.com/BigelowLab/gom-jellies) project, observations come from community scientist reports. The following species have been selected for analysis:
@@ -26,8 +49,8 @@ For the [gom-jellies](https://github.com/BigelowLab/gom-jellies) project, observ
   + *Ctenophores* (Comb)
 
 # All Observations
-Here we show the general distribution of records for the all species reported
-```{r}
+Here we show the general distribution of the `r length(all$type)` records for the all species reported
+```{r, echo = FALSE}
 ggplot() +
   geom_sf(data = coast, color = "black") +
   geom_sf(data = all, color = "steelblue", size = 1.5) +
@@ -37,13 +60,12 @@ ggplot() +
     expand = FALSE
   ) +
   theme_minimal() +
-  labs(title = "All Observations") +
   theme(axis.title = element_blank())
 ```
 
 # Filtered Set 
 Here we show the general distribution of records for the `r length(obs$type)` observations listed.  Later we show more detailed per-group analyses.
-```{r}
+```{r, echo = FALSE}
 ggplot() +
   geom_sf(data = coast, color = "black") +
   geom_sf(data = obs, color = "steelblue", size = 1.5) +
@@ -53,7 +75,6 @@ ggplot() +
     expand = FALSE
   ) +
   theme_minimal() +
-  labs(title = "All Observations") +
   theme(axis.title = element_blank())
 
 ggplot(obs, aes(x = factor(year))) +
@@ -76,7 +97,7 @@ ggplot(obs, aes(x = factor(month))) +
 ```
 
 # By Species
-```{r}
+```{r, echo = FALSE}
 ggplot() +
   geom_sf(data = coast, color = "black") +
   geom_sf(data = obs, aes(color = type), size = 1.5) +
@@ -86,7 +107,6 @@ ggplot() +
     expand = FALSE
   ) +
   theme_minimal() +
-  labs(title = "All Observations") +
   theme(axis.title = element_blank())
 
 ggplot(obs, aes(x = factor(year), fill = type)) +
