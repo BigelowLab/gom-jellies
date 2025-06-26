@@ -49,7 +49,7 @@ For the [gom-jellies](https://github.com/BigelowLab/gom-jellies) project, observ
   + *Ctenophores* (Comb)
 
 # All Observations
-Here we show the general distribution of the `r length(all$type)` records for the all species reported
+Distribution of the `r length(all$type)` reports for all species.
 ```{r, echo = FALSE}
 ggplot() +
   geom_sf(data = coast, color = "black") +
@@ -59,12 +59,13 @@ ggplot() +
     ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
     expand = FALSE
   ) +
+  labs(title = paste("Distribution of", nrow(all), "Observations")) + 
   theme_minimal() +
   theme(axis.title = element_blank())
 ```
 
 # Filtered Set 
-Here we show the general distribution of records for the `r length(obs$type)` observations listed.  Later we show more detailed per-group analyses.
+Here we show the distribution of the `r length(obs$type)` lion's mane, moon, white cross, and comb jellies reports.
 ```{r, echo = FALSE}
 ggplot() +
   geom_sf(data = coast, color = "black") +
