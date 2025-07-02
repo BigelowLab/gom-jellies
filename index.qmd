@@ -9,14 +9,15 @@ coast_bbox = st_bbox(coast)
 
 all = read_obs() %>%
   filter(source == "record") %>%
-  st_as_sf(coords = c("lon", "lat"), crs = 4326)
-obs = read_obs() %>%
-  filter(source == "record", type %in% c("lionsmane", "moon", "whitecross", "comb")) %>%
-  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>%
-  mutate(year = year(date),
+  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>% 
+    mutate(year = year(date),
          month = factor(month(date, label = TRUE, abbr = TRUE),
                         levels = month.abb),
          type = as.factor(type))
+
+obs = all %>%
+  filter(type %in% c("lionsmane", "moon", "whitecross", "comb"))
+
 ```
 
 For the [gom-jellies](https://github.com/BigelowLab/gom-jellies) project, observations come from community scientist reports. The following species have been selected for analysis:
@@ -27,9 +28,7 @@ For the [gom-jellies](https://github.com/BigelowLab/gom-jellies) project, observ
   + *Ctenophores* (Comb)
 
 # All Observations
-Distribution of the `r length(all$type)` reports for all species.
 ```{r, echo = FALSE}
-# Distribution of the `r length(all$type)` reports for all species.
 ggplot() +
   geom_sf(data = coast, color = "black") +
   geom_sf(data = all, color = "steelblue", size = 1.5) +
@@ -38,26 +37,13 @@ ggplot() +
     ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
     expand = FALSE
   ) +
-  labs(title = paste("Distribution of", nrow(all), "Observations")) + 
+  labs(title = "Distribution of All Observations") + 
   theme_minimal() +
   theme(axis.title = element_blank())
 ```
 
-# Filtered Set 
-Distribution of the `r length(obs$type)` lion's mane, moon, white cross, and comb jellies reports:
 ```{r, echo = FALSE}
-ggplot() +
-  geom_sf(data = coast, color = "black") +
-  geom_sf(data = obs, color = "steelblue", size = 1.5) +
-  coord_sf(
-    xlim = c(coast_bbox["xmin"], coast_bbox["xmax"]),
-    ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
-    expand = FALSE
-  ) +
-  theme_minimal() +
-  theme(axis.title = element_blank())
-
-ggplot(obs, aes(x = factor(year))) +
+ggplot(data = all, aes(x = factor(year))) +
   geom_bar(fill = "steelblue") +
   theme_minimal() +
   labs(
@@ -66,7 +52,7 @@ ggplot(obs, aes(x = factor(year))) +
     y = "Count"
   )
 
-ggplot(obs, aes(x = factor(month))) +
+ggplot(all, aes(x = factor(month))) +
   geom_bar(fill = "steelblue") +
   theme_minimal() +
   labs(
@@ -86,6 +72,7 @@ ggplot() +
     ylim = c(coast_bbox["ymin"], coast_bbox["ymax"]),
     expand = FALSE
   ) +
+  labs(title = "Filtered Distribution") + 
   theme_minimal() +
   theme(axis.title = element_blank())
 
